@@ -1,14 +1,24 @@
 <main class="w-full h-screen bg-slate-900 p-4 flex flex-col gap-5">
-  <h1 class="font-bold text-5xl text-center w-full text-white">
-    Conversor de código a MiniZinc
+  <h1 class="font-bold text-5xl text-center w-full text-white underline">
+    Conversor a MiniZinc
   </h1>
-  <section class="flex flex-row gap-2 bg-transparent h-full">
+  <section class="flex flex-row max-md:flex-wrap gap-2 bg-transparent h-full">
     <article class="flex flex-col w-full gap-2">
+      <div class="flex gap-2">
+        <h2 class="text-3xl text-white">Entrada</h2>
+        <button
+          class="bg-gradient-to-tr from-cyan-500 to-cyan-800 text-white hover:opacity-90 px-3 rounded-md duration-300 font-bold shadow-md"
+          (click)="showEjemplo(); generarMinizinc()"
+        >
+          Mostrar ejemplo
+        </button>
+      </div>
       <textarea
         name="codigo"
         class="h-full bg-slate-800 text-white p-4 resize-none overflow-auto font-mono text-sm focus:outline-none rounded-md shadow-2xl"
         placeholder="Ingresa tu código aquí"
         [(ngModel)]="codigo"
+        (ngModelChange)="generarMinizinc()"
       ></textarea>
       <button
         class="bg-white text-slate-900 hover:opacity-80 h-12 rounded-md duration-300 font-bold shadow-md"
@@ -17,11 +27,12 @@
       </button>
     </article>
     <article class="flex flex-col w-full gap-2">
+      <h2 class="text-3xl text-white">Conversión a MiniZinc</h2>
       <textarea
         name="minizinc"
         class="h-full bg-slate-800 text-white p-4 resize-none overflow-auto font-mono text-sm focus:outline-none rounded-md shadow-2xl"
         placeholder="No se ha procesado ningún código a MiniZinc actualmente..."
-        [(ngModel)]="codigo"
+        [(ngModel)]="conversion"
         readonly
       ></textarea>
       <button
