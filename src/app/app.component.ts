@@ -141,23 +141,19 @@ export class AppComponent {
       this.conversion += ` <= ${this.materias_primas[i].cantidad_max};\n`;
     }
 
-    this.conversion += `\n`;
+    this.conversion += `\nsolve maximize gananciaTotal;\n\n`;
+    this.productos.map((e) => {
+      this.conversion += `output ["${e.nombre_variable} = ", show(${e.nombre_variable}), "\\n"];\n`;
 
-    this.conversion += `solve maximize gananciaTotal;`;
-
-    this.conversion += `\n\n`;
-
-    this.conversion += `output [\n`;
-
-    for (let i = 0; i < this.productos.length; i++) {
-      this.conversion += `  "${this.productos[i].nombre_variable} = ", show(${this.productos[i].nombre_variable}), " " ,`;
-    }
-
-    this.conversion += `];`;
-
+    });
+    this.conversion += `output ["Ganancia total = ", show(gananciaTotal)];`;
 
     console.table(this.materias_primas);
     console.table(this.cantidadElementos);
     console.table(this.productos);
+  }
+
+  copyToClipboard(text: string): void {
+    navigator.clipboard.writeText(text);
   }
 }

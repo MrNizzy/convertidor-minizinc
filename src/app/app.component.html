@@ -22,8 +22,9 @@
       ></textarea>
       <button
         class="bg-white text-slate-900 hover:opacity-80 h-12 rounded-md duration-300 font-bold shadow-md"
+        (click)="copyToClipboard(codigo)"
       >
-        Generar
+        Copiar
       </button>
     </article>
     <article class="flex flex-col w-full gap-2">
@@ -37,6 +38,7 @@
       ></textarea>
       <button
         class="bg-gradient-to-tr from-cyan-500 to-cyan-800 text-white hover:opacity-90 h-12 rounded-md duration-300 font-bold shadow-md"
+        (click)="copyToClipboard(conversion)"
       >
         Copiar código
       </button>
